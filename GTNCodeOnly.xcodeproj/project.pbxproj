@@ -14,6 +14,8 @@
 		864ED25425CF04A30099FFF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864ED25325CF04A30099FFF7 /* Assets.xcassets */; };
 		864ED25725CF04A30099FFF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 864ED25525CF04A30099FFF7 /* LaunchScreen.storyboard */; };
 		864ED26325CF1D170099FFF7 /* ColorSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864ED26225CF1D170099FFF7 /* ColorSamples.swift */; };
+		86F5426325D1E169001B9AAB /* TryNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F5426225D1E169001B9AAB /* TryNumberViewController.swift */; };
+		86F5426625D1E585001B9AAB /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F5426525D1E585001B9AAB /* ResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		864ED25625CF04A30099FFF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		864ED25825CF04A30099FFF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		864ED26225CF1D170099FFF7 /* ColorSamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSamples.swift; sourceTree = "<group>"; };
+		86F5426225D1E169001B9AAB /* TryNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryNumberViewController.swift; sourceTree = "<group>"; };
+		86F5426525D1E585001B9AAB /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 			isa = PBXGroup;
 			children = (
 				864ED24E25CF04A20099FFF7 /* MainViewController.swift */,
+				86F5426225D1E169001B9AAB /* TryNumberViewController.swift */,
+				86F5426525D1E585001B9AAB /* ResultViewController.swift */,
 			);
 			path = ViewControlles;
 			sourceTree = "<group>";
@@ -160,6 +166,8 @@
 				864ED26325CF1D170099FFF7 /* ColorSamples.swift in Sources */,
 				864ED24B25CF04A20099FFF7 /* AppDelegate.swift in Sources */,
 				864ED24D25CF04A20099FFF7 /* SceneDelegate.swift in Sources */,
+				86F5426325D1E169001B9AAB /* TryNumberViewController.swift in Sources */,
+				86F5426625D1E585001B9AAB /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
