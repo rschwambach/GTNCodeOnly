@@ -80,18 +80,24 @@ class MainViewController: UIViewController {
         buttonPlay.backgroundColor = .clear
         buttonPlay.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Light", size: 40)
         buttonPlay.translatesAutoresizingMaskIntoConstraints = false
+        buttonPlay.addTarget(self, action: #selector(buttonPlayClicked), for: .touchUpInside)
         return buttonPlay
     }()
     
+    // MARK: Aux Vars
     
-
+    var randomResult: Int = 0
+    
+    // MARK: ViewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
     }
     
+    // MARK: Functions Creation
+    
     func setLayout() {
-        
         view.backgroundColor = Color.meteorite
         view.addSubview(stackView)
         stackView.addArrangedSubview(labelTitle)
@@ -106,8 +112,56 @@ class MainViewController: UIViewController {
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -300).isActive = true
-        
     }
+    
+    // Function to change ViewController
+    
+    func openTryNumberViewController() {
+       let controller = TryNumberViewController()
+       present(controller, animated: true, completion: nil)
+   }
+    
+    // Function to randomize inputed numbers
+    
+    func randomizeNumbers() {
+        let inputedNumberOne = Int(inputOne.text!)
+        let inputedNumberTwo = Int(inputTwo.text!)
+        
+        randomResult = Int.random(in: inputedNumberOne!...inputedNumberTwo!)
+        print(randomResult)
+    }
+    
+    // Pass the randomized number value to "TryNumberViewController"
+    
+    func passValue() {
+        let vc = TryNumberViewController()
+        vc.randNumberGot = randomResult
+        print("numbergot \(vc.randNumberGot)")
+    }
+    
+    // Function press the button "PLAY"
+    
+    @objc func buttonPlayClicked() {
+        if inputOne.text?.isEmpty == false && inputTwo.text?.isEmpty == false {
+            if Int(inputOne.text!)! > Int(inputTwo.text!)! {
+                print("second filed is lower than first field")
+            }
+            else if Int(inputOne.text!)! == Int(inputTwo.text!)! {
+                print("both numbers are the same")
+            }
+            else if Int(inputOne.text!)! == 0 || Int(inputTwo.text!)! == 0 {
+                print("no zero number allowed")
+            }
+            else {
+                randomizeNumbers()
+                passValue()
+                openTryNumberViewController()
+                inputOne.text = ""
+                inputTwo.text = ""
+            }
+        }
+    }
+    
 
 
 }

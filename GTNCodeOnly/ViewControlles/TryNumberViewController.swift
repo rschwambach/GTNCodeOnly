@@ -50,6 +50,7 @@ class TryNumberViewController: UIViewController {
         buttonTryIt.backgroundColor = .clear
         buttonTryIt.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Light", size: 50)
         buttonTryIt.translatesAutoresizingMaskIntoConstraints = false
+        buttonTryIt.addTarget(self, action: #selector(buttonTryItClicked), for: .touchUpInside)
         return buttonTryIt
     }()
     
@@ -73,7 +74,11 @@ class TryNumberViewController: UIViewController {
         return labelNumberOfTriesCount
     }()
     
+    // MARK: Aux Vars
     
+    var randNumberGot: Int = 0
+    
+    // MARK: ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +86,7 @@ class TryNumberViewController: UIViewController {
         
     }
     
+    // MARK: Functions Creation
     
     func setLayout() {
         
@@ -98,6 +104,29 @@ class TryNumberViewController: UIViewController {
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -300).isActive = true
         
+    }
+    
+    // Function to change ViewController
+    
+    func openResultViewController() {
+        let vc = ResultViewController()
+        navigationController?.pushViewController(vc, animated: true)
+   }
+    
+    // Function press the button "TRY IT"
+    
+    @objc func buttonTryItClicked() {
+        if inputGuess.text?.isEmpty == false {
+            if Int(inputGuess.text!)! > randNumberGot {
+                print("right number is lower than guess")
+            }
+            else if Int(inputGuess.text!)! < randNumberGot {
+                print("right number is higher than guess")
+            }
+            else {
+                openResultViewController()
+            }
+        }
     }
     
 }
