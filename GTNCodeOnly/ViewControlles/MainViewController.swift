@@ -117,8 +117,12 @@ class MainViewController: UIViewController {
     // Function to change ViewController
     
     func openTryNumberViewController() {
-       let controller = TryNumberViewController()
-       present(controller, animated: true, completion: nil)
+        let rootVC = TryNumberViewController()
+        rootVC.randNumberGot = randomResult
+        let navVC = UINavigationController(rootViewController: rootVC)
+        navVC.modalPresentationStyle = .fullScreen
+        navVC.setNavigationBarHidden(true, animated: false)
+        present(navVC, animated: true, completion: nil)
    }
     
     // Function to randomize inputed numbers
@@ -145,12 +149,21 @@ class MainViewController: UIViewController {
         if inputOne.text?.isEmpty == false && inputTwo.text?.isEmpty == false {
             if Int(inputOne.text!)! > Int(inputTwo.text!)! {
                 print("second filed is lower than first field")
+                let alert = UIAlertController(title: "Input Error", message: "First Number is Higher Than Second Number", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
             else if Int(inputOne.text!)! == Int(inputTwo.text!)! {
                 print("both numbers are the same")
+                let alert = UIAlertController(title: "Input Error", message: "Numbers Can Not Be Equal", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
             else if Int(inputOne.text!)! == 0 || Int(inputTwo.text!)! == 0 {
                 print("no zero number allowed")
+                let alert = UIAlertController(title: "Input Error", message: "Numbers Can Not be Zero", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
             else {
                 randomizeNumbers()
@@ -161,8 +174,5 @@ class MainViewController: UIViewController {
             }
         }
     }
-    
-
-
 }
 

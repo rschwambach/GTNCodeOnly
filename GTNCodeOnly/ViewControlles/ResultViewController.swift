@@ -77,19 +77,29 @@ class ResultViewController: UIViewController {
         buttonMenu.setTitleColor(Color.violentViolet, for: .highlighted)
         buttonMenu.backgroundColor = .clear
         buttonMenu.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Light", size: 40)
+        buttonMenu.addTarget(self, action: #selector(buttonMenuClicked), for: .touchUpInside)
         buttonMenu.translatesAutoresizingMaskIntoConstraints = false
         return buttonMenu
     }()
     
+    // MARK: Aux Vars
+    
+    var rightNumberReceived: Int = 0
+    var NumberOfTriesReceived: Int = 0
+    
+    // MARK: ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
+        setRightNumber()
+        setNumberOfTries()
     }
     
+    // MARK: Functions Creation
+    
     func setLayout() {
-        
-        view.backgroundColor = Color.meteorite
+        view.backgroundColor = Color.blackcurrant
         view.addSubview(stackView)
         stackView.addArrangedSubview(labelTitle)
         stackView.addArrangedSubview(labelRightNumber)
@@ -106,8 +116,31 @@ class ResultViewController: UIViewController {
         
         buttonMenu.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40).isActive = true
         buttonMenu.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 40).isActive = true
-        
     }
     
+    // Function press the button "Menu"
     
+    @objc func buttonMenuClicked() {
+        openMainViewController()
+    }
+    
+    // Function to change ViewController
+    
+    func openMainViewController() {
+        let vc = MainViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        /*let rootVC = MainViewController()
+        let navVC = UINavigationController(rootViewController: rootVC)
+        navVC.modalPresentationStyle = .fullScreen
+        navVC.setNavigationBarHidden(true, animated: false)
+        present(navVC, animated: true, completion: nil)*/
+   }
+    
+    private func setRightNumber() {
+        labelRightNumberCount.text = String(rightNumberReceived)
+    }
+    
+    private func setNumberOfTries() {
+        labelNumberOfTriesCount.text = String(NumberOfTriesReceived)
+    }
 }

@@ -74,23 +74,24 @@ class TryNumberViewController: UIViewController {
         return labelNumberOfTriesCount
     }()
     
+    
     // MARK: Aux Vars
     
     var randNumberGot: Int = 0
+    var triesCount: Int = 0
     
     // MARK: ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
-        
+        print(randNumberGot)
     }
     
     // MARK: Functions Creation
     
     func setLayout() {
-        
-        view.backgroundColor = Color.meteorite
+        view.backgroundColor = Color.violentViolet
         view.addSubview(stackView)
         stackView.addArrangedSubview(lableTitle)
         stackView.addArrangedSubview(inputGuess)
@@ -103,14 +104,18 @@ class TryNumberViewController: UIViewController {
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -300).isActive = true
-        
     }
     
     // Function to change ViewController
     
     func openResultViewController() {
-        let vc = ResultViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let rootVC = ResultViewController()
+        rootVC.rightNumberReceived = randNumberGot
+        rootVC.NumberOfTriesReceived = triesCount
+        let navVC = UINavigationController(rootViewController: rootVC)
+        navVC.modalPresentationStyle = .fullScreen
+        navVC.setNavigationBarHidden(true, animated: false)
+        present(navVC, animated: true, completion: nil)
    }
     
     // Function press the button "TRY IT"
@@ -119,14 +124,27 @@ class TryNumberViewController: UIViewController {
         if inputGuess.text?.isEmpty == false {
             if Int(inputGuess.text!)! > randNumberGot {
                 print("right number is lower than guess")
+                let alert = UIAlertController(title: "Guess Alert", message: "Right Number is Lower Than Guess", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                triesCount += 1
+                labelNumberOfTriesCount.text = String(triesCount)
+                inputGuess.text = ""
             }
             else if Int(inputGuess.text!)! < randNumberGot {
                 print("right number is higher than guess")
+                let alert = UIAlertController(title: "Guess Alert", message: "Right Number is Higher Than Guess", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                triesCount += 1
+                labelNumberOfTriesCount.text = String(triesCount)
+                inputGuess.text = ""
             }
             else {
+                triesCount += 1
+                inputGuess.text = String(triesCount)
                 openResultViewController()
             }
         }
     }
-    
 }
